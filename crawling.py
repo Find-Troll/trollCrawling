@@ -3,7 +3,15 @@ import re
 import numpy as np
 from bs4 import BeautifulSoup
 
-def Trim(keywords):
+def Trim(summonerName):
+    summonerName = summonerName
+    source = requests.get("https://www.op.gg/summoner/userName=" + summonerName).text
+    soup = BeautifulSoup(source, "html.parser")
+    keywords = soup.select("div.MostChampionContent")
+
+    keywords = [str(each_line.get_text().strip()) for each_line in keywords]
+    keywords = keywords[1].split('\n')
+
     tmp = []
     #replace("찾을값", "바꿀값", [바꿀횟수])
     for i in range(len(keywords)):
@@ -32,14 +40,8 @@ def Trim(keywords):
         winRate.append(tmp)
     return winRate
     
-summonerName = "패함"
-source = requests.get("https://www.op.gg/summoner/userName=" + summonerName).text
-soup = BeautifulSoup(source, "html.parser")
-keywords = soup.select("div.MostChampionContent")
-
-keywords = [str(each_line.get_text().strip()) for each_line in keywords]
-keywords = keywords[1].split('\n')
 
 
-winRate = Trim(keywords)
+winRate = Trim("페닛칠")
+
 print(winRate)
