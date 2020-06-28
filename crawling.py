@@ -1,5 +1,4 @@
 import requests
-import re
 import numpy as np
 from bs4 import BeautifulSoup
 
@@ -34,9 +33,9 @@ def Trim(summonerName):
     winRate = []
     for i in range(len(keywords)):
         tmp = []
-        tmp.append(keywords[i][0])
-        tmp.append(keywords[i][9])
-        tmp.append(keywords[i][10])
+        tmp.append(keywords[i][0]) #op.gg champ명
+        tmp.append(keywords[i][9]) #해당 챔피언 승률
+        tmp.append(keywords[i][10]) #해당 챔피언 플레이 판 수
         winRate.append(tmp)
     return winRate
     
