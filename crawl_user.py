@@ -39,8 +39,7 @@ def Trim(summonerName):
         winRate.append(tmp)
     return winRate
     
-
-
 winRate = Trim("페닛칠")
+for i in range(len(winRate)):
+    print(winRate[i])
 
-print(winRate)
